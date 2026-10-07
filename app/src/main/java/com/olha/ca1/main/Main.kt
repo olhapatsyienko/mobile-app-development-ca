@@ -1,9 +1,9 @@
 package com.olha.ca1.main
 
-import com.olha.ca1.models.PlacemarkMemStore
-import com.olha.ca1.models.PlacemarkModel
+import com.olha.ca1.PlacedMark
+import com.olha.ca1.PlacedMarkList
 
-val store = PlacemarkMemStore()
+val store = PlacedMarkList()
 
 fun main() {
     println("=== Placemark Console App (Lab 1) ===")
@@ -44,7 +44,7 @@ fun addPlacemark() {
     val description = readlnOrNull()?.trim().orEmpty()
 
     if (title.isNotEmpty()) {
-        val placemark = PlacemarkModel(title = title, description = description)
+        val placemark = PlacedMark(title = title, desc = description)
         store.create(placemark)
         println("Placemark added successfully with ID: ${placemark.id}")
     } else {
@@ -59,7 +59,7 @@ fun listPlacemarks() {
         println("No placemarks stored yet.")
     } else {
         placemarks.forEach {
-            println("ID: ${it.id} | Title: ${it.title} | Description: ${it.description}")
+            println("ID: ${it.id} | Title: ${it.title} | Description: ${it.desc}")
         }
     }
 }
@@ -80,7 +80,7 @@ fun updatePlacemark() {
 
         if (title.isNotEmpty()) {
             val updated = store.update(
-                PlacemarkModel(id = id, title = title, description = description)
+                PlacedMark(id = id, title = title, desc = description)
             )
             if (updated) println("Placemark updated successfully.")
         } else {
@@ -120,7 +120,7 @@ fun searchPlacemark() {
         val placemark = store.findOne(id)
         if (placemark != null) {
             println(
-                "Found: ID: ${placemark.id} | Title: ${placemark.title} | Description: ${placemark.description}"
+                "Found: ID: ${placemark.id} | Title: ${placemark.title} | Description: ${placemark.desc}"
             )
         } else {
             println("No placemark found with ID $id.")
