@@ -19,14 +19,11 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val viewMarksButton = findViewById<Button>(R.id.viewMarksButton)
-        val addMarkButton = findViewById<Button>(R.id.addMarkButton)
-
-        viewMarksButton.setOnClickListener {
-            startActivity(Intent(this, MarkListActivity::class.java))
+        findViewById<Button>(R.id.viewTrailsButton).setOnClickListener {
+            startActivity(Intent(this, TrailListActivity::class.java))
         }
 
-        addMarkButton.setOnClickListener {
+        findViewById<Button>(R.id.addTrailButton).setOnClickListener {
             startActivity(Intent(this, AddEditActivity::class.java))
         }
     }

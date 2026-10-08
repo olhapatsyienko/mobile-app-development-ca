@@ -11,22 +11,22 @@
         android:id="@+id/mainTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Placed Marks"
+        android:text="HikingHub"
         android:textSize="32sp"
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/viewMarksButton"
+        android:id="@+id/viewTrailsButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="View Marks" />
+        android:text="View Trails" />
 
     <Button
-        android:id="@+id/addMarkButton"
+        android:id="@+id/addTrailButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Add Mark" />
+        android:text="Add Trail" />
 
 </LinearLayout>
