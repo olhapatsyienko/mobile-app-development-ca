@@ -1,9 +1,12 @@
 package com.olha.ca1
 
 import android.os.Bundle
+import android.text.InputType
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RatingBar
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +16,7 @@ class AddEditActivity : AppCompatActivity() {
     private lateinit var nameInput: EditText
     private lateinit var descriptionInput: EditText
     private lateinit var locationInput: EditText
-    private lateinit var difficultyInput: EditText
+    private lateinit var difficultyInput: Spinner
     private lateinit var distanceInput: EditText
     private lateinit var ratingInput: RatingBar
 
@@ -29,6 +32,20 @@ class AddEditActivity : AppCompatActivity() {
         difficultyInput = findViewById(R.id.difficultyInput)
         distanceInput = findViewById(R.id.distanceInput)
         ratingInput = findViewById(R.id.ratingInput)
+
+        // ensure text fields accept letters 
+        nameInput.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_CAP_WORDS
+        descriptionInput.inputType =
+            InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_MULTI_LINE
+        locationInput.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_CAP_WORDS
+        distanceInput.inputType = InputType.TYPE_CLASS_TEXT
+
+        val difficulties = resources.getStringArray(R.array.difficulty_levels)
+        difficultyInput.adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_dropdown_item,
+            difficulties
+        )
 
         val saveButton = findViewById<Button>(R.id.saveButton)
         val cancelButton = findViewById<Button>(R.id.cancelButton)
@@ -56,7 +73,11 @@ class AddEditActivity : AppCompatActivity() {
         nameInput.setText(trail.name)
         descriptionInput.setText(trail.description)
         locationInput.setText(trail.location)
-        difficultyInput.setText(trail.difficulty)
+        val difficultyIndex = (difficultyInput.adapter as ArrayAdapter<String>)
+            .getPosition(trail.difficulty)
+        if (difficultyIndex >= 0) {
+            difficultyInput.setSelection(difficultyIndex)
+        }
         distanceInput.setText(trail.distance.toString())
         ratingInput.rating = trail.rating.toFloat()
     }
@@ -65,7 +86,7 @@ class AddEditActivity : AppCompatActivity() {
         val name = nameInput.text.toString().trim()
         val description = descriptionInput.text.toString().trim()
         val location = locationInput.text.toString().trim()
-        val difficulty = difficultyInput.text.toString().trim()
+        val difficulty = difficultyInput.selectedItem.toString()
 
         if (!isValidText(name)) {
             nameInput.error = "Enter a name using letters"
@@ -79,11 +100,6 @@ class AddEditActivity : AppCompatActivity() {
 
         if (!isValidText(location)) {
             locationInput.error = "Enter a location using letters"
-            return
-        }
-
-        if (!isValidText(difficulty)) {
-            difficultyInput.error = "Enter a difficulty using letters"
             return
         }
 
@@ -125,7 +141,7 @@ class AddEditActivity : AppCompatActivity() {
         finish()
     }
 
-    /** Non-empty text that includes at least one letter (rejects numbers-only input). */
+    // non empty text that includes at least one letter  
     private fun isValidText(value: String): Boolean {
         return value.isNotEmpty() && value.any { it.isLetter() }
     }
