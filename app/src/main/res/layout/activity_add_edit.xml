@@ -64,14 +64,23 @@
             android:inputType="numberDecimal"
             android:minHeight="48dp" />
 
-        <EditText
-            android:id="@+id/ratingInput"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Rating (0-5)"
-            android:inputType="numberDecimal"
-            android:minHeight="48dp" />
+            android:gravity="center_horizontal"
+            android:text="Rating (0-5)"
+            android:textSize="16sp" />
+
+        <RatingBar
+            android:id="@+id/ratingInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:numStars="5"
+            android:rating="0"
+            android:stepSize="1.0" />
 
         <Button
             android:id="@+id/saveButton"

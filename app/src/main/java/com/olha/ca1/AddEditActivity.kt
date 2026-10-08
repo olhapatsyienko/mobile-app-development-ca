@@ -3,6 +3,7 @@ package com.olha.ca1
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +15,7 @@ class AddEditActivity : AppCompatActivity() {
     private lateinit var locationInput: EditText
     private lateinit var difficultyInput: EditText
     private lateinit var distanceInput: EditText
-    private lateinit var ratingInput: EditText
+    private lateinit var ratingInput: RatingBar
 
     private var editingId: Long? = null
 
@@ -57,7 +58,7 @@ class AddEditActivity : AppCompatActivity() {
         locationInput.setText(trail.location)
         difficultyInput.setText(trail.difficulty)
         distanceInput.setText(trail.distance.toString())
-        ratingInput.setText(trail.rating.toString())
+        ratingInput.rating = trail.rating.toFloat()
     }
 
     private fun saveTrail() {
@@ -77,11 +78,7 @@ class AddEditActivity : AppCompatActivity() {
             return
         }
 
-        val rating = ratingInput.text.toString().toDoubleOrNull()
-        if (rating == null || rating < 0 || rating > 5) {
-            ratingInput.error = "Enter a rating between 0 and 5"
-            return
-        }
+        val rating = ratingInput.rating.toDouble()
 
         if (editingId == null) {
             AppData.trails.create(
