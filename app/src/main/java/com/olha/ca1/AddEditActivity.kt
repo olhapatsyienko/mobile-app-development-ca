@@ -9,143 +9,105 @@ import androidx.appcompat.app.AppCompatActivity
 
 class AddEditActivity : AppCompatActivity() {
 
-    private lateinit var titleInput: EditText
+    private lateinit var nameInput: EditText
     private lateinit var descriptionInput: EditText
-    private lateinit var xInput: EditText
-    private lateinit var yInput: EditText
+    private lateinit var locationInput: EditText
+    private lateinit var difficultyInput: EditText
+    private lateinit var distanceInput: EditText
+    private lateinit var ratingInput: EditText
 
     private var editingId: Long? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_add_edit)
 
-        titleInput =
-            findViewById(R.id.titleInput)
+        nameInput = findViewById(R.id.nameInput)
+        descriptionInput = findViewById(R.id.descriptionInput)
+        locationInput = findViewById(R.id.locationInput)
+        difficultyInput = findViewById(R.id.difficultyInput)
+        distanceInput = findViewById(R.id.distanceInput)
+        ratingInput = findViewById(R.id.ratingInput)
 
-        descriptionInput =
-            findViewById(R.id.descriptionInput)
+        val saveButton = findViewById<Button>(R.id.saveButton)
+        val cancelButton = findViewById<Button>(R.id.cancelButton)
 
-        xInput =
-            findViewById(R.id.xInput)
-
-        yInput =
-            findViewById(R.id.yInput)
-
-        val saveButton =
-            findViewById<Button>(R.id.saveButton)
-
-        val cancelButton =
-            findViewById<Button>(R.id.cancelButton)
-
-        editingId =
-            intent.getLongExtra("id", -1L)
-                .takeIf { it != -1L }
+        editingId = intent.getLongExtra("id", -1L).takeIf { it != -1L }
 
         if (editingId != null) {
-
-            findViewById<TextView>(R.id.formTitle)
-                .text = "Edit Mark"
-
-            loadExistingMark(editingId!!)
+            findViewById<TextView>(R.id.formTitle).text = "Edit Trail"
+            loadExistingTrail(editingId!!)
         }
 
-        saveButton.setOnClickListener {
-            saveMark()
-        }
-
-        cancelButton.setOnClickListener {
-            finish()
-        }
+        saveButton.setOnClickListener { saveTrail() }
+        cancelButton.setOnClickListener { finish() }
     }
 
-    private fun loadExistingMark(id: Long) {
+    private fun loadExistingTrail(id: Long) {
+        val trail = AppData.trails.findOne(id)
 
-        val mark =
-            AppData.placedMarks.findOne(id)
-
-        if (mark == null) {
-
-            Toast.makeText(
-                this,
-                "Mark not found",
-                Toast.LENGTH_SHORT
-            ).show()
-
+        if (trail == null) {
+            Toast.makeText(this, "Trail not found", Toast.LENGTH_SHORT).show()
             finish()
             return
         }
 
-        titleInput.setText(mark.title)
-        descriptionInput.setText(mark.desc)
-        xInput.setText(mark.x.toString())
-        yInput.setText(mark.y.toString())
+        nameInput.setText(trail.name)
+        descriptionInput.setText(trail.description)
+        locationInput.setText(trail.location)
+        difficultyInput.setText(trail.difficulty)
+        distanceInput.setText(trail.distance.toString())
+        ratingInput.setText(trail.rating.toString())
     }
 
-    private fun saveMark() {
+    private fun saveTrail() {
+        val name = nameInput.text.toString().trim()
+        val description = descriptionInput.text.toString().trim()
+        val location = locationInput.text.toString().trim()
+        val difficulty = difficultyInput.text.toString().trim()
 
-        val title =
-            titleInput.text.toString().trim()
-
-        val description =
-            descriptionInput.text.toString().trim()
-
-        if (title.isEmpty()) {
-            titleInput.error = "Title is required"
+        if (name.isEmpty()) {
+            nameInput.error = "Name is required"
             return
         }
 
-        val x =
-            xInput.text.toString().toDoubleOrNull()
-
-        if (x == null) {
-            xInput.error = "Enter a valid number"
+        val distance = distanceInput.text.toString().toDoubleOrNull()
+        if (distance == null || distance < 0) {
+            distanceInput.error = "Enter a valid distance"
             return
         }
 
-        val y =
-            yInput.text.toString().toDoubleOrNull()
-
-        if (y == null) {
-            yInput.error = "Enter a valid number"
+        val rating = ratingInput.text.toString().toDoubleOrNull()
+        if (rating == null || rating < 0 || rating > 5) {
+            ratingInput.error = "Enter a rating between 0 and 5"
             return
         }
 
         if (editingId == null) {
-
-            val mark = PlacedMark(
-                title = title,
-                desc = description,
-                x = x,
-                y = y
+            AppData.trails.create(
+                Trail(
+                    name = name,
+                    description = description,
+                    location = location,
+                    difficulty = difficulty,
+                    distance = distance,
+                    rating = rating
+                )
             )
-
-            AppData.placedMarks.create(mark)
-
-            Toast.makeText(
-                this,
-                "Mark created",
-                Toast.LENGTH_SHORT
-            ).show()
-
+            Toast.makeText(this, "Trail created", Toast.LENGTH_SHORT).show()
         } else {
-
-            val mark = PlacedMark(
-                id = editingId!!,
-                title = title,
-                desc = description,
-                x = x,
-                y = y
+            AppData.trails.update(
+                Trail(
+                    id = editingId!!,
+                    name = name,
+                    description = description,
+                    location = location,
+                    difficulty = difficulty,
+                    distance = distance,
+                    rating = rating
+                )
             )
-
-            AppData.placedMarks.update(mark)
-
-            Toast.makeText(
-                this,
-                "Mark updated",
-                Toast.LENGTH_SHORT
-            ).show()
+            Toast.makeText(this, "Trail updated", Toast.LENGTH_SHORT).show()
         }
 
         finish()

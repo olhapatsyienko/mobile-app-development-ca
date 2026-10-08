@@ -14,16 +14,16 @@
             android:id="@+id/formTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add Mark"
+            android:text="Add Trail"
             android:textSize="28sp"
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/titleInput"
+            android:id="@+id/nameInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:hint="Title"
+            android:hint="Name"
             android:inputType="text"
             android:minHeight="48dp" />
 
@@ -38,21 +38,39 @@
             android:minLines="3" />
 
         <EditText
-            android:id="@+id/xInput"
+            android:id="@+id/locationInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="X coordinate"
-            android:inputType="numberDecimal|numberSigned"
+            android:hint="Location"
+            android:inputType="text"
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/yInput"
+            android:id="@+id/difficultyInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Y coordinate"
-            android:inputType="numberDecimal|numberSigned"
+            android:hint="Difficulty (e.g. Easy, Moderate, Hard)"
+            android:inputType="text"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/distanceInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Distance (km)"
+            android:inputType="numberDecimal"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/ratingInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Rating (0-5)"
+            android:inputType="numberDecimal"
             android:minHeight="48dp" />
 
         <Button

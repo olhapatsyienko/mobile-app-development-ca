@@ -18,7 +18,7 @@
             android:windowSoftInputMode="adjustResize" />
 
         <activity
-            android:name=".MarkListActivity"
+            android:name=".TrailListActivity"
             android:exported="false" />
 
         <activity
