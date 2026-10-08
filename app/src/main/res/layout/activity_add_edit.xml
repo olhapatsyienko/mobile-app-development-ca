@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:hint="Name"
-            android:inputType="text"
+            android:inputType="textCapWords"
             android:minHeight="48dp" />
 
         <EditText
@@ -34,7 +34,7 @@
             android:layout_marginTop="16dp"
             android:gravity="top"
             android:hint="Description"
-            android:inputType="textMultiLine"
+            android:inputType="textMultiLine|textCapSentences"
             android:minLines="3" />
 
         <EditText
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="Location"
-            android:inputType="text"
+            android:inputType="textCapWords"
             android:minHeight="48dp" />
 
         <EditText
@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="Difficulty (e.g. Easy, Moderate, Hard)"
-            android:inputType="text"
+            android:inputType="textCapWords"
             android:minHeight="48dp" />
 
         <EditText
@@ -62,6 +62,7 @@
             android:layout_marginTop="16dp"
             android:hint="Distance (km)"
             android:inputType="numberDecimal"
+            android:digits="0123456789."
             android:minHeight="48dp" />
 
         <TextView

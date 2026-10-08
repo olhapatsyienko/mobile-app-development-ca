@@ -67,14 +67,29 @@ class AddEditActivity : AppCompatActivity() {
         val location = locationInput.text.toString().trim()
         val difficulty = difficultyInput.text.toString().trim()
 
-        if (name.isEmpty()) {
-            nameInput.error = "Name is required"
+        if (!isValidText(name)) {
+            nameInput.error = "Enter a name using letters"
             return
         }
 
-        val distance = distanceInput.text.toString().toDoubleOrNull()
+        if (!isValidText(description)) {
+            descriptionInput.error = "Enter a description using letters"
+            return
+        }
+
+        if (!isValidText(location)) {
+            locationInput.error = "Enter a location using letters"
+            return
+        }
+
+        if (!isValidText(difficulty)) {
+            difficultyInput.error = "Enter a difficulty using letters"
+            return
+        }
+
+        val distance = distanceInput.text.toString().trim().toDoubleOrNull()
         if (distance == null || distance < 0) {
-            distanceInput.error = "Enter a valid distance"
+            distanceInput.error = "Enter a valid number (km)"
             return
         }
 
@@ -108,5 +123,10 @@ class AddEditActivity : AppCompatActivity() {
         }
 
         finish()
+    }
+
+    /** Non-empty text that includes at least one letter (rejects numbers-only input). */
+    private fun isValidText(value: String): Boolean {
+        return value.isNotEmpty() && value.any { it.isLetter() }
     }
 }
