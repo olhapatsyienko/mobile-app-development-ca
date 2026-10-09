@@ -6,6 +6,10 @@
     <string name="drawer_open">Open drawer</string>
     <string name="drawer_close">Close drawer</string>
     <string name="filter_all">All</string>
+    <string name="filters">Filters</string>
+    <string name="filters_active">Filters · %1$d active</string>
+    <string name="filters_expand">Show filters</string>
+    <string name="filters_collapse">Hide filters</string>
     <string-array name="difficulty_levels">
         <item>Easy</item>
         <item>Moderate</item>

@@ -7,6 +7,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,7 +20,10 @@ class TrailListActivity : AppCompatActivity() {
     private lateinit var difficultyFilter: Spinner
     private lateinit var locationFilter: Spinner
     private lateinit var sortSpinner: Spinner
+    private lateinit var filtersToggle: TextView
+    private lateinit var filtersPanel: View
 
+    private var filtersExpanded = false
     private var suppressSpinnerCallback = false
 
     private val spinnerListener = object : AdapterView.OnItemSelectedListener {
@@ -42,6 +46,8 @@ class TrailListActivity : AppCompatActivity() {
         difficultyFilter = findViewById(R.id.difficultyFilter)
         locationFilter = findViewById(R.id.locationFilter)
         sortSpinner = findViewById(R.id.sortSpinner)
+        filtersToggle = findViewById(R.id.filtersToggle)
+        filtersPanel = findViewById(R.id.filtersPanel)
 
         adapter = TrailAdapter(
             trails = emptyList(),
@@ -53,6 +59,7 @@ class TrailListActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         setupSpinners()
+        setupFiltersToggle()
 
         findViewById<Button>(R.id.returnButton).setOnClickListener {
             finish()
@@ -65,6 +72,54 @@ class TrailListActivity : AppCompatActivity() {
             setupLocationFilterOptions()
             refreshList()
         }
+    }
+
+    private fun setupFiltersToggle() {
+        filtersPanel.visibility = View.GONE
+        filtersToggle.setOnClickListener {
+            filtersExpanded = !filtersExpanded
+            filtersPanel.visibility = if (filtersExpanded) View.VISIBLE else View.GONE
+            updateFiltersToggleLabel()
+        }
+        updateFiltersToggleLabel()
+    }
+
+    private fun updateFiltersToggleLabel() {
+        val activeCount = countActiveFilters()
+        val label = if (activeCount > 0) {
+            getString(R.string.filters_active, activeCount)
+        } else {
+            getString(R.string.filters)
+        }
+        val arrow = if (filtersExpanded) " ▲" else " ▼"
+        filtersToggle.text = label + arrow
+        filtersToggle.contentDescription = if (filtersExpanded) {
+            getString(R.string.filters_collapse)
+        } else {
+            getString(R.string.filters_expand)
+        }
+    }
+
+    private fun countActiveFilters(): Int {
+        val allLabel = getString(R.string.filter_all)
+        val defaultSort = resources.getStringArray(R.array.sort_options).first()
+        var count = 0
+        if (difficultyFilter.selectedItem?.toString() != null &&
+            difficultyFilter.selectedItem.toString() != allLabel
+        ) {
+            count++
+        }
+        if (locationFilter.selectedItem?.toString() != null &&
+            locationFilter.selectedItem.toString() != allLabel
+        ) {
+            count++
+        }
+        if (sortSpinner.selectedItem?.toString() != null &&
+            sortSpinner.selectedItem.toString() != defaultSort
+        ) {
+            count++
+        }
+        return count
     }
 
     private fun setupSpinners() {
@@ -133,6 +188,9 @@ class TrailListActivity : AppCompatActivity() {
         }
 
         adapter.updateTrails(trails)
+        if (::filtersToggle.isInitialized) {
+            updateFiltersToggleLabel()
+        }
     }
 
     private fun editTrail(trail: Trail) {

@@ -33,49 +33,71 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/filtersToggle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="Filter by difficulty"
-                android:textSize="14sp" />
+                android:background="?attr/selectableItemBackground"
+                android:minHeight="48dp"
+                android:gravity="center_vertical"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:text="@string/filters"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-            <Spinner
-                android:id="@+id/difficultyFilter"
+            <LinearLayout
+                android:id="@+id/filtersPanel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp" />
+                android:orientation="vertical"
+                android:visibility="gone">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Filter by location"
-                android:textSize="14sp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Filter by difficulty"
+                    android:textSize="14sp" />
 
-            <Spinner
-                android:id="@+id/locationFilter"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="48dp" />
+                <Spinner
+                    android:id="@+id/difficultyFilter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Sort by"
-                android:textSize="14sp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Filter by location"
+                    android:textSize="14sp" />
 
-            <Spinner
-                android:id="@+id/sortSpinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="48dp" />
+                <Spinner
+                    android:id="@+id/locationFilter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Sort by"
+                    android:textSize="14sp" />
+
+                <Spinner
+                    android:id="@+id/sortSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp" />
+
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/trailsRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_weight="1" />
 
             <Button
