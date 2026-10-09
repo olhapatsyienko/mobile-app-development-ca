@@ -9,6 +9,7 @@ import android.widget.RatingBar
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 
 class AddEditActivity : AppCompatActivity() {
@@ -24,6 +25,7 @@ class AddEditActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_add_edit)
         attachDrawer()
 
