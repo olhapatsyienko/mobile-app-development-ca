@@ -34,6 +34,7 @@ class TrailListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trail_list)
+        attachDrawer()
 
         recyclerView = findViewById(R.id.trailsRecyclerView)
         difficultyFilter = findViewById(R.id.difficultyFilter)

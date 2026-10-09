@@ -1,32 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="32dp">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/mainTitle"
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="32dp">
+
+            <TextView
+                android:id="@+id/mainTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HikingHub"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/viewTrailsButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="View Trails" />
+
+            <Button
+                android:id="@+id/addTrailButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Add Trail" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="HikingHub"
-        android:textSize="32sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:itemIconPadding="0dp"
+        app:itemIconSize="0dp"
+        app:menu="@menu/nav_drawer" />
 
-    <Button
-        android:id="@+id/viewTrailsButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="View Trails" />
-
-    <Button
-        android:id="@+id/addTrailButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Add Trail" />
-
-</LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

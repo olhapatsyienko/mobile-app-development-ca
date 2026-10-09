@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">HikingHub</string>
+    <string name="nav_add_trail">Add a trail</string>
+    <string name="nav_trail_list">List of trails</string>
+    <string name="nav_home">Home</string>
+    <string name="drawer_open">Open drawer</string>
+    <string name="drawer_close">Close drawer</string>
     <string name="filter_all">All</string>
     <string-array name="difficulty_levels">
         <item>Easy</item>
