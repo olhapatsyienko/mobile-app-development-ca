@@ -3,6 +3,8 @@
 
     <style name="Theme.Ca" parent="Theme.MaterialComponents.Light.NoActionBar" />
 
+    <style name="Widget.HikingHub" parent="" />
+
     <style name="Widget.HikingHub.Button" parent="Widget.MaterialComponents.Button">
         <item name="android:layout_height">54dp</item>
         <item name="android:textAllCaps">false</item>
@@ -12,7 +14,7 @@
         <item name="elevation">0dp</item>
     </style>
 
-    <style name="Widget.HikingHub.Button.Primary">
+    <style name="Widget.HikingHub.Button.Primary" parent="Widget.HikingHub.Button">
         <item name="backgroundTint">@color/trail_orange</item>
         <item name="android:textColor">@color/sand</item>
     </style>
@@ -42,9 +44,28 @@
         <item name="backgroundTint">@android:color/transparent</item>
     </style>
 
-    <style name="Widget.HikingHub.Button.Compact.Danger">
+    <style name="Widget.HikingHub.Button.Compact.Danger" parent="Widget.HikingHub.Button.Compact">
         <item name="android:textColor">@color/trail_orange</item>
         <item name="strokeColor">@color/trail_orange</item>
+    </style>
+
+    <style name="Widget.HikingHub.EditText" parent="">
+        <item name="android:background">@drawable/bg_outline</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:paddingHorizontal">14dp</item>
+        <item name="android:paddingVertical">12dp</item>
+        <item name="android:textColor">@color/forest</item>
+        <item name="android:textColorHint">#9926422A</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Widget.HikingHub.FieldLabel" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:textColor">@color/forest</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>

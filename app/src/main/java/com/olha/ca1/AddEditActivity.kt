@@ -41,14 +41,17 @@ class AddEditActivity : AppCompatActivity() {
         descriptionInput.inputType =
             InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_MULTI_LINE
         locationInput.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_CAP_WORDS
-        distanceInput.inputType = InputType.TYPE_CLASS_TEXT
+        distanceInput.inputType =
+            InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
 
         val difficulties = resources.getStringArray(R.array.difficulty_levels)
         difficultyInput.adapter = ArrayAdapter(
             this,
-            android.R.layout.simple_spinner_dropdown_item,
+            R.layout.spinner_item,
             difficulties
-        )
+        ).also {
+            it.setDropDownViewResource(R.layout.spinner_item)
+        }
 
         val saveButton = findViewById<Button>(R.id.saveButton)
         val cancelButton = findViewById<Button>(R.id.cancelButton)
