@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_add_trail"
+            android:title="@string/nav_add_trail" />
+        <item
+            android:id="@+id/nav_trail_list"
+            android:title="@string/nav_trail_list" />
+        <item
+            android:id="@+id/nav_home"
+            android:title="@string/nav_home" />
+    </group>
+</menu>
