@@ -63,7 +63,7 @@
                 android:id="@+id/filtersPanel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_filters_panel"
+                android:background="@drawable/bg_outline"
                 android:orientation="vertical"
                 android:padding="14dp"
                 android:visibility="gone">
@@ -79,7 +79,10 @@
                     android:id="@+id/difficultyFilter"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="48dp" />
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_outline"
+                    android:minHeight="48dp"
+                    android:popupBackground="@drawable/bg_outline_sand" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -93,7 +96,10 @@
                     android:id="@+id/locationFilter"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="48dp" />
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_outline"
+                    android:minHeight="48dp"
+                    android:popupBackground="@drawable/bg_outline_sand" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -107,7 +113,10 @@
                     android:id="@+id/sortSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="48dp" />
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_outline"
+                    android:minHeight="48dp"
+                    android:popupBackground="@drawable/bg_outline_sand" />
 
             </LinearLayout>
 
