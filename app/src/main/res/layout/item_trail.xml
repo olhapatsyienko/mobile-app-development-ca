@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:background="@drawable/bg_trail_card"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -9,41 +11,61 @@
         android:id="@+id/nameText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textColor="@color/forest"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/descriptionText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:textSize="16sp" />
+        android:layout_marginTop="6dp"
+        android:alpha="0.85"
+        android:textColor="@color/forest"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/locationText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:textSize="14sp" />
+        android:layout_marginTop="8dp"
+        android:textColor="@color/trail_orange"
+        android:textSize="13sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/detailsText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:textSize="14sp" />
+        android:alpha="0.7"
+        android:textColor="@color/forest"
+        android:textSize="13sp" />
 
-    <Button
-        android:id="@+id/editButton"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Edit" />
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/deleteButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Delete" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/editButton"
+            style="@style/Widget.HikingHub.Button.Compact"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:layout_weight="1"
+            android:text="Edit" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/deleteButton"
+            style="@style/Widget.HikingHub.Button.Compact.Danger"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_weight="1"
+            android:text="Delete" />
+
+    </LinearLayout>
 
 </LinearLayout>
