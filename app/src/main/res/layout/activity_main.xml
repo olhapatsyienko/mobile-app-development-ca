@@ -3,20 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/sand">
 
     <LinearLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/sand"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+            android:background="@color/forest"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:titleTextColor="@color/sand" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,28 +27,54 @@
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="32dp">
+            android:paddingHorizontal="40dp">
 
             <TextView
                 android:id="@+id/mainTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:letterSpacing="0.04"
                 android:text="HikingHub"
-                android:textSize="32sp"
+                android:textColor="@color/forest"
+                android:textSize="40sp"
                 android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/viewTrailsButton"
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="View Trails" />
+                android:layout_marginTop="10dp"
+                android:alpha="0.7"
+                android:text="Find your next trail"
+                android:textColor="@color/forest"
+                android:textSize="15sp" />
 
-            <Button
-                android:id="@+id/addTrailButton"
+            <View
+                android:layout_width="40dp"
+                android:layout_height="3dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/trail_orange" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="40dp"
+            android:paddingBottom="40dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/viewTrailsButton"
+                style="@style/Widget.HikingHub.Button.Primary"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:text="Discover" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/addTrailButton"
+                style="@style/Widget.HikingHub.Button.Outline"
+                android:layout_width="match_parent"
+                android:layout_marginTop="14dp"
                 android:text="Add Trail" />
 
         </LinearLayout>
