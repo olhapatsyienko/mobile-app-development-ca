@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Ca" parent="Theme.MaterialComponents.Light.NoActionBar" />
+    <style name="Theme.Ca" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorControlNormal">@color/sand</item>
+        <item name="drawerArrowStyle">@style/Widget.HikingHub.DrawerArrow</item>
+    </style>
+
+    <style name="Widget.HikingHub.DrawerArrow" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@color/sand</item>
+    </style>
+
+    <style name="Widget.HikingHub.NavigationView">
+        <item name="android:background">@color/sand</item>
+        <item name="itemTextColor">@color/nav_item_text</item>
+        <item name="itemIconTint">@color/nav_item_text</item>
+        <item name="itemIconPadding">0dp</item>
+        <item name="itemIconSize">0dp</item>
+        <item name="itemHorizontalPadding">20dp</item>
+        <item name="itemVerticalPadding">14dp</item>
+        <item name="itemTextAppearance">@style/TextAppearance.HikingHub.NavItem</item>
+    </style>
+
+    <style name="TextAppearance.HikingHub.NavItem" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
     <style name="Widget.HikingHub" parent="" />
 

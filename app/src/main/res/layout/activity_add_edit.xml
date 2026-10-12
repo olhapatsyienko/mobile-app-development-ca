@@ -165,11 +165,11 @@
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navView"
+        style="@style/Widget.HikingHub.NavigationView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:itemIconPadding="0dp"
-        app:itemIconSize="0dp"
+        app:headerLayout="@layout/nav_header"
         app:menu="@menu/nav_drawer" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
