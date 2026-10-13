@@ -14,8 +14,8 @@
         <item name="android:background">@color/sand</item>
         <item name="itemTextColor">@color/nav_item_text</item>
         <item name="itemIconTint">@color/nav_item_text</item>
-        <item name="itemIconPadding">0dp</item>
-        <item name="itemIconSize">0dp</item>
+        <item name="itemIconPadding">16dp</item>
+        <item name="itemIconSize">24dp</item>
         <item name="itemHorizontalPadding">20dp</item>
         <item name="itemVerticalPadding">14dp</item>
         <item name="itemTextAppearance">@style/TextAppearance.HikingHub.NavItem</item>
