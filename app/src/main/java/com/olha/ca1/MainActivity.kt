@@ -23,9 +23,5 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.viewTrailsButton).setOnClickListener {
             startActivity(Intent(this, TrailListActivity::class.java))
         }
-
-        findViewById<Button>(R.id.addTrailButton).setOnClickListener {
-            startActivity(Intent(this, AddEditActivity::class.java))
-        }
     }
 }

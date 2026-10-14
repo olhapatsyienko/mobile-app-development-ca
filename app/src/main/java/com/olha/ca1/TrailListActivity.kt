@@ -61,6 +61,10 @@ class TrailListActivity : AppCompatActivity() {
         setupSpinners()
         setupFiltersToggle()
 
+        findViewById<Button>(R.id.addTrailButton).setOnClickListener {
+            startActivity(Intent(this, AddEditActivity::class.java))
+        }
+
         findViewById<Button>(R.id.returnButton).setOnClickListener {
             finish()
         }
