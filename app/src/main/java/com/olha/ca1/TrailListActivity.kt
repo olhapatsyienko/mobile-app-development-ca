@@ -61,6 +61,10 @@ class TrailListActivity : AppCompatActivity() {
         setupSpinners()
         setupFiltersToggle()
 
+        findViewById<Button>(R.id.addTrailButton).setOnClickListener {
+            startActivity(Intent(this, AddEditActivity::class.java))
+        }
+
         findViewById<Button>(R.id.returnButton).setOnClickListener {
             finish()
         }
@@ -125,16 +129,10 @@ class TrailListActivity : AppCompatActivity() {
     private fun setupSpinners() {
         val allLabel = getString(R.string.filter_all)
         val difficulties = listOf(allLabel) + resources.getStringArray(R.array.difficulty_levels).toList()
-        difficultyFilter.adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_dropdown_item,
-            difficulties
-        )
+        difficultyFilter.adapter = createFilterAdapter(difficulties)
 
-        sortSpinner.adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_dropdown_item,
-            resources.getStringArray(R.array.sort_options)
+        sortSpinner.adapter = createFilterAdapter(
+            resources.getStringArray(R.array.sort_options).toList()
         )
 
         setupLocationFilterOptions()
@@ -153,14 +151,16 @@ class TrailListActivity : AppCompatActivity() {
             .sorted()
 
         suppressSpinnerCallback = true
-        locationFilter.adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_dropdown_item,
-            locations
-        )
+        locationFilter.adapter = createFilterAdapter(locations)
         val index = locations.indexOf(previous).takeIf { it >= 0 } ?: 0
         locationFilter.setSelection(index)
         suppressSpinnerCallback = false
+    }
+
+    private fun createFilterAdapter(items: List<String>): ArrayAdapter<String> {
+        return ArrayAdapter(this, R.layout.spinner_item, items).also {
+            it.setDropDownViewResource(R.layout.spinner_item)
+        }
     }
 
     private fun refreshList() {
