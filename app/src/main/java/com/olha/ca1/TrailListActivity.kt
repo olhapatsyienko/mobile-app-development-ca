@@ -8,10 +8,14 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.json.JSONObject
+import java.net.HttpURLConnection
+import java.net.URL
 
 class TrailListActivity : AppCompatActivity() {
 
@@ -68,6 +72,69 @@ class TrailListActivity : AppCompatActivity() {
         findViewById<Button>(R.id.returnButton).setOnClickListener {
             finish()
         }
+
+        loadTrailsFromApi()
+    }
+
+    private fun loadTrailsFromApi() {
+        if (AppData.loadedFromApi || loadStarted) return
+        loadStarted = true
+
+        Thread {
+            val trails = try {
+                val connection = URL(TRAIL_API_URL).openConnection() as HttpURLConnection
+                connection.connectTimeout = 15000
+                connection.readTimeout = 15000
+                try {
+                    if (connection.responseCode != HttpURLConnection.HTTP_OK) error("request failed")
+                    val features = JSONObject(
+                        connection.inputStream.bufferedReader().use { it.readText() }
+                    ).getJSONArray("features")
+                    buildList {
+                        for (index in 0 until features.length()) {
+                            val item = features.getJSONObject(index).optJSONObject("attributes") ?: continue
+                            val name = item.optString("Name").trim()
+                            if (name.isEmpty()) continue
+                            val difficulty = item.optString("Difficulty").trim()
+                            val distance = item.optDouble("LengthKm", 0.0)
+                            add(
+                                Trail(
+                                    name = name,
+                                    description = item.optString("Description").trim(),
+                                    location = item.optString("County").trim(),
+                                    difficulty = if (difficulty == "Easy" || difficulty == "Strenuous") {
+                                        difficulty
+                                    } else {
+                                        "Moderate"
+                                    },
+                                    distance = if (distance.isNaN()) 0.0 else distance
+                                )
+                            )
+                        }
+                    }
+                } finally {
+                    connection.disconnect()
+                }
+            } catch (_: Exception) {
+                emptyList()
+            }
+
+            runOnUiThread {
+                if (trails.isEmpty()) {
+                    loadStarted = false
+                    if (!isDestroyed) {
+                        Toast.makeText(this, "Couldn't load trails. Showing the saved ones.", Toast.LENGTH_SHORT).show()
+                    }
+                    return@runOnUiThread
+                }
+                AppData.trails.replaceAll(trails)
+                AppData.loadedFromApi = true
+                if (!isDestroyed && ::adapter.isInitialized) {
+                    setupLocationFilterOptions()
+                    refreshList()
+                }
+            }
+        }.start()
     }
 
     override fun onResume() {
@@ -203,5 +270,16 @@ class TrailListActivity : AppCompatActivity() {
         AppData.trails.delete(trail.id)
         setupLocationFilterOptions()
         refreshList()
+    }
+
+    companion object {
+        private var loadStarted = false
+
+        private const val TRAIL_API_URL =
+            "https://services-eu1.arcgis.com/CltcWyRoZmdwaB7T/ArcGIS/rest/services/" +
+                "GetIrelandActiveTrailRoutes/FeatureServer/0/query" +
+                "?where=Activity%3D%27Walking%27" +
+                "&outFields=Name,Description,County,Difficulty,LengthKm" +
+                "&returnGeometry=false&f=json&resultRecordCount=100"
     }
 }
