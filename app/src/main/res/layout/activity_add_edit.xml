@@ -133,13 +133,14 @@
 
                     <RatingBar
                         android:id="@+id/ratingInput"
+                        style="@style/Widget.AppCompat.RatingBar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="6dp"
                         android:numStars="5"
+                        android:progressBackgroundTint="@color/forest"
                         android:progressTint="@color/trail_orange"
-                        android:secondaryProgressTint="@color/trail_orange"
                         android:rating="0"
                         android:stepSize="1.0" />
 
