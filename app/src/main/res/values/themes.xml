@@ -91,4 +91,18 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="ThemeOverlay.HikingHub.PopupMenu" parent="ThemeOverlay.MaterialComponents">
+        <item name="android:colorBackground">@color/sand</item>
+        <item name="android:textColorPrimary">@color/forest</item>
+        <item name="android:textColor">@color/forest</item>
+        <item name="colorControlNormal">@color/forest</item>
+        <item name="colorError">@color/trail_orange</item>
+        <item name="popupMenuBackground">@drawable/bg_outline_sand</item>
+        <item name="android:popupMenuStyle">@style/Widget.HikingHub.PopupMenu</item>
+    </style>
+
+    <style name="Widget.HikingHub.PopupMenu" parent="Widget.MaterialComponents.PopupMenu">
+        <item name="android:popupBackground">@drawable/bg_outline_sand</item>
+    </style>
+
 </resources>
