@@ -100,7 +100,7 @@ class TrailListActivity : AppCompatActivity() {
                             add(
                                 Trail(
                                     name = name,
-                                    description = item.optString("Description").trim(),
+                                    description = shortenDescription(item.optString("Description")),
                                     location = item.optString("County").trim(),
                                     difficulty = if (difficulty == "Easy" || difficulty == "Strenuous") {
                                         difficulty
@@ -135,6 +135,16 @@ class TrailListActivity : AppCompatActivity() {
                 }
             }
         }.start()
+    }
+
+    private fun shortenDescription(value: String): String {
+        val text = value.replace("\\s+".toRegex(), " ").trim()
+        if (text.isEmpty() || text.equals("null", ignoreCase = true)) {
+            return "No description for this trail."
+        }
+        if (text.length <= 160) return text
+        val end = text.lastIndexOf(' ', 160).takeIf { it >= 100 } ?: 160
+        return text.substring(0, end).trimEnd() + "..."
     }
 
     override fun onResume() {
