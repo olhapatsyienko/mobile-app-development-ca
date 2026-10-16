@@ -4,6 +4,7 @@ package com.olha.ca1
  
 object AppData {
     val trails = TrailList()
+    var loadedFromApi = false
 
     init {
         trails.create(

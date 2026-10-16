@@ -163,7 +163,7 @@
                 style="@style/Widget.HikingHub.Button.Outline"
                 android:layout_width="match_parent"
                 android:layout_marginBottom="20dp"
-                android:text="Back to menu" />
+                android:text="Back to main page" />
 
         </LinearLayout>
     </LinearLayout>

@@ -15,6 +15,13 @@ class TrailList {
         trails.add(trail)
     }
 
+    fun replaceAll(newTrails: List<Trail>) {
+        val incoming = newTrails.toList()
+        trails.clear()
+        lastId.set(0L)
+        incoming.forEach { create(it) }
+    }
+
     fun update(trail: Trail): Boolean {
         val found = findOne(trail.id)
         return if (found != null) {
