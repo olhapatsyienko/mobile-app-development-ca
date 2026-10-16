@@ -146,19 +146,29 @@
 
                 </LinearLayout>
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/saveButton"
-                    style="@style/Widget.HikingHub.Button.Primary"
+                <LinearLayout
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:text="Save" />
+                    android:orientation="horizontal">
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/cancelButton"
-                    style="@style/Widget.HikingHub.Button.Outline"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="12dp"
-                    android:text="Cancel" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/cancelButton"
+                        style="@style/Widget.HikingHub.Button.Outline"
+                        android:layout_width="0dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:text="Cancel" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/saveButton"
+                        style="@style/Widget.HikingHub.Button.Primary"
+                        android:layout_width="0dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:text="Save" />
+
+                </LinearLayout>
 
             </LinearLayout>
         </ScrollView>
