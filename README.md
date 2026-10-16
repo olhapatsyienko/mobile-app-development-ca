@@ -14,8 +14,30 @@ Android app for browsing and managing hiking trails. Continuous assesment for th
 
 Sample Irish walking trails are included using API. Trail data is held in memory for the current session.
 
+## Screenshots
+
+**Home**
+
+![Home screen](pictures/main_page.jpg)
+
+**Navigation drawer**
+
+![Navigation drawer](pictures/drawer_view.jpg)
+
+**Trail list**
+
+![Trail list](pictures/list_view.jpg)
+
+**Filters**
+
+![Filters](pictures/filters_view.jpg)
+
+**Add a trail**
+
+![Add a trail](pictures/add_view.jpg)
+
 ## UML diagram
 
-![HikingHub UML diagram](uml-diagram.png)
+![HikingHub UML diagram](pictures/uml-diagram.png)
 
 
